@@ -1,5 +1,7 @@
 # juejin
 
+该项目是青训营项目，只要是模仿掘金官网制作
+
 ## Project setup
 ```
 npm install
