@@ -7,15 +7,15 @@
               <div slot="header" class="clearfix setting">
                 <!-- 标签页 -->
                 <ul class="nav-menu">
-                  <li>
-                    <a href="#">推荐</a>
+                  <li class="nav-item">
+                    <a href="#" class="active">推荐</a>
                     <el-divider direction="vertical"></el-divider>
                   </li>
-                  <li>
+                  <li class="nav-item">
                     <a href="#">最新</a>
                     <el-divider direction="vertical"></el-divider>
                   </li>
-                  <li>
+                  <li class="nav-item">
                     <a href="#">热榜</a>
                     <el-divider direction="vertical"></el-divider>
                   </li>
@@ -58,18 +58,20 @@
     text-align: center;
   }
 
-  ul.nav-menu{
+  nav-menu{
     text-decoration: none;
     list-style: none;
+    padding-left: -50px;
   }
 
-  a{
+  .nav-item a{
     text-decoration: none;
     cursor: pointer;
     color: #909090;
+    font-size: 14px;
   }
 
-  li{
+  .nav-item{
     display: inline;
     text-decoration: none;
     cursor: pointer;
@@ -99,8 +101,17 @@
     padding-top: 0px;
     padding-bottom: 10px;
   }
+
   .box-card {
     width: 80%;
+  }
+
+  .nav-item a:hover{
+    color:#1171ee;
+  }
+
+  .nav-item a.active{
+    color:#1171ee;
   }
 
 </style>
