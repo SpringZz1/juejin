@@ -5,10 +5,25 @@ Vue.use(VueRouter)
 
 const routes = [
   {
+    // 默认进入的就是推荐界面
     path: '/',
     name: 'Home',
     component: () =>
-      import('../views/home/index.vue')
+      import('../views/home/index.vue'),
+    // 增加子目录: 分别是最新和热榜
+    children: [{
+      path: '/newest',
+      name: 'Newest',
+      component: () =>
+        import('../components/newest/index.vue')
+    },
+    {
+      path: 'hotList',
+      name: 'HotList',
+      component: () =>
+        import('../components/hotList/index.vue')
+    }
+    ]
   },
   {
     path: '/about',
