@@ -7,23 +7,42 @@
               <div slot="header" class="clearfix setting">
                 <!-- 标签页 -->
                 <ul class="nav-menu">
-                  <li class="nav-item">
-                    <a href="#" class="active">推荐</a>
+                  <!-- <li class="nav-item active">
+                    <router-link to="/" exact-active-class="eac">推荐</router-link>
                     <el-divider direction="vertical"></el-divider>
                   </li>
                   <li class="nav-item">
-                    <a href="#">最新</a>
+                    <router-link to="/newest">最新</router-link>
                     <el-divider direction="vertical"></el-divider>
                   </li>
                   <li class="nav-item">
-                    <a href="#">热榜</a>
+                    <router-link to="/hotList">热榜</router-link>
                     <el-divider direction="vertical"></el-divider>
+                  </li> -->
+                  <li v-for="(item, index) in linkItem" class="nav-item" :key="index">
+                  <router-link :to="item.src" exact-active-class="eac">
+                  {{item.content}}
+                  <!-- <el-divider direction="vertical"></el-divider> -->
+                  </router-link>
+                  </li>
+                  <!-- 选择器 -->
+                  <li class="nav-item">
+                    <el-select v-model="value" placeholder="三天内" size="mini" style="width=30px">
+                    <el-option
+                      v-for="item in options"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value"
+                      >
+                    </el-option>
+                    </el-select>
                   </li>
                 </ul>
               </div>
-              <div v-for="o in 4" :key="o" class="text item">
+              <!-- <div v-for="o in 4" :key="o" class="text item">
                 {{'列表内容 ' + o }}
-              </div>
+              </div> -->
+             <router-view></router-view>
             </el-card>
 
         </el-main>
@@ -31,7 +50,33 @@
 </template>
 
 <script>
-
+export default {
+  name: 'Home',
+  data () {
+    return {
+      linkItem: [
+        { src: '/', content: '推荐' },
+        { src: '/newest', content: '最新' },
+        { src: '/hotList', content: '热榜' }
+      ],
+      options: [{
+        value: '选项1',
+        label: '三天内'
+      }, {
+        value: '选项2',
+        label: '七天内'
+      }, {
+        value: '选项3',
+        label: '三十天内'
+      }, {
+        value: '选项4',
+        label: '全部'
+      }
+      ],
+      value: ''
+    }
+  }
+}
 </script>
 
 <style>
@@ -67,7 +112,7 @@
   .nav-item a{
     text-decoration: none;
     cursor: pointer;
-    color: #909090;
+    /* color: #909090; */
     font-size: 14px;
   }
 
@@ -75,9 +120,12 @@
     display: inline;
     text-decoration: none;
     cursor: pointer;
-    color: #909090;
     float: left;
   }
+
+  /* .nav-item::before{
+    border-left: 1px solid #1171ee;
+  } */
 
   .text {
     font-size: 14px;
@@ -106,12 +154,34 @@
     width: 80%;
   }
 
+  .nav-item a:visited{
+    color: #909090;
+  }
+
   .nav-item a:hover{
     color:#1171ee;
   }
 
-  .nav-item a.active{
+  .nav-item a:active{
     color:#1171ee;
+  }
+
+  .eac{
+    /* 这里使用!important来提高优先级 */
+    color:#1171ee !important;
+  }
+
+  .nav-item a::after{
+    display: inline-block;
+    height: 13px;
+    margin: 0px 10px;
+    border-right: 0.5px solid #66666648;
+    content: '';
+  }
+
+  .el-input__inner{
+    border:1px solid #dcdfe6;
+    width: 90px;
   }
 
 </style>
