@@ -7,27 +7,16 @@
               <div slot="header" class="clearfix setting">
                 <!-- 标签页 -->
                 <ul class="nav-menu">
-                  <!-- <li class="nav-item active">
-                    <router-link to="/" exact-active-class="eac">推荐</router-link>
-                    <el-divider direction="vertical"></el-divider>
-                  </li>
-                  <li class="nav-item">
-                    <router-link to="/newest">最新</router-link>
-                    <el-divider direction="vertical"></el-divider>
-                  </li>
-                  <li class="nav-item">
-                    <router-link to="/hotList">热榜</router-link>
-                    <el-divider direction="vertical"></el-divider>
-                  </li> -->
-                  <li v-for="(item, index) in linkItem" class="nav-item" :key="index">
-                  <router-link :to="item.src" exact-active-class="eac">
+                  <li v-for="(item, index) in linkItem" class="nav-item" :key="index"
+                  @click="activeItem(item, index)"
+                  >
+                  <router-link :to="item.src" :class="[activeIndex===index? 'eac':'']" >
                   {{item.content}}
-                  <!-- <el-divider direction="vertical"></el-divider> -->
                   </router-link>
                   </li>
                   <!-- 选择器 -->
                   <li class="nav-item">
-                    <el-select v-model="value" placeholder="三天内" size="mini" style="width=30px">
+                    <el-select v-if="activeIndex===2" v-model="value" placeholder="三天内" size="mini" style="width=30px">
                     <el-option
                       v-for="item in options"
                       :key="item.value"
@@ -54,6 +43,8 @@ export default {
   name: 'Home',
   data () {
     return {
+      // 默认激活下标为0的推荐标签
+      activeIndex: 0,
       linkItem: [
         { src: '/', content: '推荐' },
         { src: '/newest', content: '最新' },
@@ -74,6 +65,11 @@ export default {
       }
       ],
       value: ''
+    }
+  },
+  methods: {
+    activeItem (item, index) {
+      this.activeIndex = index
     }
   }
 }
@@ -122,10 +118,6 @@ export default {
     cursor: pointer;
     float: left;
   }
-
-  /* .nav-item::before{
-    border-left: 1px solid #1171ee;
-  } */
 
   .text {
     font-size: 14px;
