@@ -16,7 +16,7 @@
                   </li>
                   <!-- 选择器 -->
                   <li class="nav-item">
-                    <el-select v-if="activeIndex===2" v-model="value" placeholder="三天内" size="mini" style="width=30px">
+                    <el-select v-if="activeIndex===2" v-model="value" placeholder="三天内" size="mini" class="nav-item">
                     <el-option
                       v-for="item in options"
                       :key="item.value"
@@ -176,4 +176,12 @@ export default {
     width: 90px;
   }
 
+  .el-input--mini .el-input__inner{
+    height: 20px;
+    /* line-height: 20px; */
+  }
+
+  .el-input--mini .el-input__icon{
+    line-height: 2px;
+  }
 </style>
