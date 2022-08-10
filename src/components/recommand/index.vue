@@ -1,6 +1,8 @@
 <template>
 <div class="container" >
   <div class="card" v-for="(item, index) in metaInfo"  :key="index">
+
+    <div class="main">
     <div class="header" >
     <ul>
       <li class="meta-info">
@@ -10,9 +12,7 @@
       </li>
     </ul>
     </div>
-    <div class="main">
-      <div class="left">
-        <div class="title"></div>
+      <div class="content">
       </div>
       <div class="image"></div>
     </div>
@@ -31,12 +31,12 @@ export default {
           author: '掘金酱',
           date: '16天前',
           tags: '前端'
+        },
+        {
+          author: '张员外',
+          date: '一月前',
+          tags: 'Vue.js '
         }
-        // {
-        //   author: '张员外',
-        //   date: '一月前',
-        //   tags: 'Vue.js '
-        // }
       ]
     }
   }
@@ -68,16 +68,29 @@ export default {
 .meta-info a:visited{
   color: #909090;
 }
-
-.meta-info a:hover{
+/* 除了第二个表示天数的元素其他的都添加hover效果 */
+.meta-info a:not(:nth-child(2)):hover{
   color:#1171ee;
 }
 
-.meta-info a::after{
+.meta-info a:not(:last-child)::after{
     display: inline-block;
     height: 13px;
     margin: 0px 10px;
     border-right: 0.5px solid #66666648;
     content: '';
+}
+
+.el-card__body{
+  margin-top: -15px;
+  padding-top: 0;
+  padding-left: 0;
+}
+
+.main{
+  position: relative;
+  height: 100px;
+  width: 100%;
+  background-color: #fff;
 }
 </style>
