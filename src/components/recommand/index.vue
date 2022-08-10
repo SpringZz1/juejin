@@ -5,7 +5,7 @@
     <ul>
       <li class="meta-info">
         <a href="#">{{item.author}}</a>
-        {{item.date}}
+        <a href="#">{{item.date}}</a>
         <a href="#">{{item.tags}}</a>
       </li>
     </ul>
@@ -61,4 +61,23 @@ export default {
   font-size: 13px;
 }
 
+.meta-info a{
+  text-decoration: none;
+}
+
+.meta-info a:visited{
+  color: #909090;
+}
+
+.meta-info a:hover{
+  color:#1171ee;
+}
+
+.meta-info a::after{
+    display: inline-block;
+    height: 13px;
+    margin: 0px 10px;
+    border-right: 0.5px solid #66666648;
+    content: '';
+}
 </style>
