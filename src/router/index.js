@@ -10,8 +10,15 @@ const routes = [
     name: 'Home',
     component: () =>
       import('../views/home/index.vue'),
+    redirect: '/recommand',
     // 增加子目录: 分别是最新和热榜
     children: [{
+      path: '/recommand',
+      name: 'Recommand',
+      component: () =>
+        import('../components/recommand/index.vue')
+    },
+    {
       path: '/newest',
       name: 'Newest',
       component: () =>
