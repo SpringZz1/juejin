@@ -137,7 +137,9 @@ export default {
   }
 
   .el-card__header{
+    margin-left: -15px;
     padding-left: 0px;
+    margin-top: -5px;
     padding-top: 0px;
     padding-bottom: 10px;
   }
@@ -163,7 +165,7 @@ export default {
     color:#1171ee !important;
   }
 
-  .nav-item a::after{
+  .nav-item a:last-child::after{
     display: inline-block;
     height: 13px;
     margin: 0px 10px;
@@ -184,4 +186,5 @@ export default {
   .el-input--mini .el-input__icon{
     line-height: 2px;
   }
+
 </style>
