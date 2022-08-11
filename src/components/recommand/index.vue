@@ -3,16 +3,18 @@
   <div class="card" v-for="(item, index) in metaInfo"  :key="index">
 
     <div class="main">
-    <div class="header" >
-    <ul>
-      <li class="meta-info">
-        <a href="#">{{item.author}}</a>
-        <a href="#">{{item.date}}</a>
-        <a href="#">{{item.tags}}</a>
-      </li>
-    </ul>
-    </div>
+      <div class="header" >
+      <ul>
+        <li class="meta-info">
+          <a href="#">{{item.author}}</a>
+          <a href="#">{{item.date}}</a>
+          <a href="#">{{item.tags}}</a>
+        </li>
+      </ul>
+      </div>
       <div class="content">
+        <h3 class="title">test</h3>
+        <span class="word">garegerigjaeirgjaerigjaeiorg</span>
       </div>
       <div class="image"></div>
     </div>
@@ -44,17 +46,18 @@ export default {
 </script>
 
 <style>
-/* .card{
-  position: relative;
-  width: 100%;
-  height: 50px;
+
+/* .card:hover{
+  background-color: red;
 } */
+
 .el-card__body{
   position: relative;
   cursor: pointer;
 }
 .meta-info{
   list-style-type: none;
+  height: 100%;
   position: absolute;
   top: 10px;
   left: 20px;
@@ -83,14 +86,51 @@ export default {
 
 .el-card__body{
   margin-top: -15px;
-  padding-top: 0;
-  padding-left: 0;
 }
 
 .main{
   position: relative;
-  height: 100px;
+  height: 120px;
   width: 100%;
   background-color: #fff;
+}
+
+.main::after{
+  position: absolute;
+  left: 20px;
+  content: '';
+  width: 80%;
+  /* height: 75px; */
+  top:110px;
+  width: 95%;
+  border-bottom: 1px solid #66666648;
+}
+
+.main:hover{
+  background-color: #cccccc12;
+}
+
+.header{
+  height: 20%;
+}
+
+.title{
+  position: absolute;
+  left: 20px;
+  top: 35px;
+  font-size: 16px;
+}
+
+.word{
+  position: absolute;
+  left: 20px;
+  top:  60px;
+  font-size: 13px;
+  color: #909090;
+}
+
+.el-card__body{
+  padding-left: 0;
+  padding-right: 0;
 }
 </style>
