@@ -76,6 +76,10 @@ export default {
 </script>
 
 <style>
+*{
+  margin: 0;
+  padding: 0;
+}
   body{
     background-color: #e4e6eb;
   }
@@ -102,7 +106,7 @@ export default {
   nav-menu{
     text-decoration: none;
     list-style: none;
-    padding-left: -50px;
+    /* padding-left: -50px; */
   }
 
   .nav-item a{
@@ -134,14 +138,6 @@ export default {
   }
   .clearfix:after {
     clear: both
-  }
-
-  .el-card__header{
-    margin-left: -15px;
-    padding-left: 0px;
-    margin-top: -5px;
-    padding-top: 0px;
-    padding-bottom: 10px;
   }
 
   .box-card {
