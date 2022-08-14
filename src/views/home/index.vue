@@ -33,7 +33,6 @@
               </div> -->
              <router-view></router-view>
             </el-card>
-
         </el-main>
     </el-container>
 </template>
