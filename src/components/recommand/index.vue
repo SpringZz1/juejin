@@ -2,7 +2,7 @@
 <div class="container" >
   <div class="card" v-for="(item, index) in metaInfo"  :key="index">
 
-    <div class="main">
+    <div class="main" @click="toDetail(item.id)">
       <div class="header" >
       <ul>
         <li class="meta-info">
@@ -15,7 +15,7 @@
         <i class="el-icon-close"></i>
       </span>
       </div>
-      <div class="content">
+      <div :class="[item.url === '' ? 'content':'content-image']">
         <h3 class="title">test</h3>
         <div class="word">
           文字过多文字过多文字过多文字过多文字过多文字过多文字过多文字过多文字过多文字过多文字过多文字过多文字过多文字过多文字过多
@@ -53,6 +53,7 @@ export default {
       // 每个标签页的信息，包括作者、日期以及标签
       metaInfo: [
         {
+          id: 1,
           author: '掘金酱',
           date: '16天前',
           tags: '前端',
@@ -63,6 +64,7 @@ export default {
           url: 'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png'
         },
         {
+          id: 2,
           author: '张员外',
           date: '一月前',
           tags: 'Vue.js ',
@@ -72,6 +74,17 @@ export default {
           url: ''
         }
       ]
+    }
+  },
+  methods: {
+    toDetail (id) {
+      console.log(id)
+      this.$router.push(
+        {
+          name: 'Detail',
+          params: { id: id }
+        }
+      )
     }
   }
 }
@@ -158,12 +171,19 @@ export default {
   height: 20%;
 }
 
+/* 如果没有右边没有图片略缩图 */
 .content{
   position: relative;
   width: 100%;
   height: 80%;
 }
 
+/* 如果右边有图片略缩图 */
+.content-image{
+  position: relative;
+  width: 80%;
+  height: 80%;
+}
 .title{
   position: absolute;
   left: 22px;
