@@ -6,11 +6,9 @@
       <div class="header" >
       <ul>
         <li class="meta-info">
-          <a href="#">
-            <!-- {{item.item_info.author_user_info}} -->
-            {{index}}</a>
+          <a href="#">{{item.item_info.author_user_info.user_name}}</a>
           <a href="#">{{item.item_type}}</a>
-          <a href="#" v-for="(tag, index) in item.item_info.tags" :key="index">{{tag.tag_name}}</a>
+          <a href="#" class="tags" v-for="(tag, index) in item.item_info.tags" :key="index">{{tag.tag_name}}</a>
         </li>
       </ul>
       <span class="option">
@@ -116,7 +114,7 @@ export default {
         console.log(this.totalInfo[0].item_info.article_info.cover_image)
         // console.log(this.totalInfo)
         // for (let i = 0; i < this.totalInfo.length; i++) {
-        console.log(this.totalInfo)
+        //   console.log(this.totalInfo[i].item_info.author_user_info)
         // }
       })
     }
@@ -159,11 +157,26 @@ export default {
 }
 
 .meta-info a:not(:last-child)::after{
-    display: inline-block;
-    height: 13px;
-    margin: 0px 10px;
-    border-right: 0.5px solid #66666648;
-    content: '';
+  display: inline-block;
+  height: 13px;
+  margin: 0px 10px;
+  border-right: 0.5px solid #66666648;
+  content: '';
+}
+
+/* 多个tag后面添加小圆点 */
+.meta-info a.tags:not(:last-child)::after{
+  display: inline-block;
+  position: relative;
+  bottom: 3px;
+  left: 2px;
+  background-color: #6666668a;
+  text-align: center;
+  width: 2px;
+  height: 2px;
+  border-radius: 50% ;
+  content:'';
+  margin: 0px 3px;
 }
 
 .option{
