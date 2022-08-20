@@ -15,15 +15,15 @@
         <i class="el-icon-close"></i>
       </span>
       </div>
-      <!-- <div :class="[item.item_info.article_info.cover_image === '' ? 'content':'content-image']">
+      <div :class="[item.item_info.article_info.cover_image === '' ? 'content':'content-image']">
         <h3 class="title">{{item.item_info.article_info.title}}</h3>
         <div class="word">
           {{item.item_info.article_info.brief_content}}
           </div>
-      </div> -->
+      </div>
       <!-- 右侧图片 -->
       <!-- 如果没有封面则不显示 -->
-      <!-- <div class="image" v-if="item.item_info.article_info.cover_image !==''">
+      <div class="image" v-if="item.item_info.article_info.cover_image !==''">
         <img :src="item.item_info.article_info.cover_image" alt="图片">
       </div>
       <div class="footer">
@@ -39,7 +39,7 @@
           <i class="el-icon-chat-round"></i>
           <span>{{item.item_info.article_info.comment_count}}</span>
         </div>
-      </div> -->
+      </div>
     </div>
   </div>
 </div>
