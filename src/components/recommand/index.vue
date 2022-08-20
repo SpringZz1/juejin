@@ -1,45 +1,47 @@
 <template>
 <div class="container" >
-  <div class="card" v-for="(item, index) in metaInfo"  :key="index">
+  <div class="card" v-for="(item, index) in totalInfo"  :key="index">
 
-    <div class="main" @click="toDetail(item.id)">
+    <div class="main" @click="toDetail(item.item_info.article_id)">
       <div class="header" >
       <ul>
         <li class="meta-info">
-          <a href="#">{{item.author}}</a>
-          <a href="#">{{item.date}}</a>
-          <a href="#">{{item.tags}}</a>
+          <a href="#">
+            <!-- {{item.item_info.author_user_info}} -->
+            {{index}}</a>
+          <a href="#">{{item.item_type}}</a>
+          <a href="#" v-for="(tag, index) in item.item_info.tags" :key="index">{{tag.tag_name}}</a>
         </li>
       </ul>
       <span class="option">
         <i class="el-icon-close"></i>
       </span>
       </div>
-      <div :class="[item.url === '' ? 'content':'content-image']">
-        <h3 class="title">test</h3>
+      <!-- <div :class="[item.item_info.article_info.cover_image === '' ? 'content':'content-image']">
+        <h3 class="title">{{item.item_info.article_info.title}}</h3>
         <div class="word">
-          文字过多文字过多文字过多文字过多文字过多文字过多文字过多文字过多文字过多文字过多文字过多文字过多文字过多文字过多文字过多
+          {{item.item_info.article_info.brief_content}}
           </div>
-      </div>
+      </div> -->
       <!-- 右侧图片 -->
       <!-- 如果没有封面则不显示 -->
-      <div class="image" v-if="item.url !==''">
-        <img :src="item.url" alt="图片">
+      <!-- <div class="image" v-if="item.item_info.article_info.cover_image !==''">
+        <img :src="item.item_info.article_info.cover_image" alt="图片">
       </div>
       <div class="footer">
         <div class="footer-item">
           <i class="el-icon-view"></i>
-          <span>{{item.view}}</span>
+          <span>{{item.item_info.article_info.view_count}}</span>
         </div>
         <div class="footer-item">
           <i class="el-icon-thumb"></i>
-          <span>{{item.likes}}</span>
+          <span>{{item.item_info.article_info.collect_count}}</span>
         </div>
         <div class="footer-item">
           <i class="el-icon-chat-round"></i>
-          <span>{{item.comments}}</span>
+          <span>{{item.item_info.article_info.comment_count}}</span>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>
@@ -47,9 +49,12 @@
 </template>
 
 <script>
+
 export default {
   data () {
     return {
+      // 全部数据
+      totalInfo: {},
       // 每个标签页的信息，包括作者、日期以及标签
       metaInfo: [
         {
@@ -76,6 +81,15 @@ export default {
       ]
     }
   },
+  computed: {
+    computeInfo: function () {
+      console.log('computed test')
+      // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+      // this.test1 = this.totalInfo.slice(0, 2)
+      // console.log(this.test1)
+      return this.totalInfo
+    }
+  },
   methods: {
     toDetail (id) {
       console.log(id)
@@ -85,7 +99,30 @@ export default {
           params: { id: id }
         }
       )
+    },
+    getDate () {
+      console.log('get date now...')
+      // 使用get请求获取数据
+      this.$http.get('/test.json').then(res => {
+        this.totalInfo = res.data.data
+        // console.log(this.totalInfo.slice(0, 3))
+        // 作者名字
+        console.log(this.totalInfo[0].item_info.author_user_info.user_name)
+        // tag名称
+        console.log(this.totalInfo[0].item_info.tags[0].tag_name)
+        // 文章简评
+        console.log(this.totalInfo[0].item_info.article_info.brief_content)
+        // 文章封面
+        console.log(this.totalInfo[0].item_info.article_info.cover_image)
+        // console.log(this.totalInfo)
+        // for (let i = 0; i < this.totalInfo.length; i++) {
+        console.log(this.totalInfo)
+        // }
+      })
     }
+  },
+  created () {
+    this.getDate()
   }
 }
 </script>
