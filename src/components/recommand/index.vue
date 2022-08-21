@@ -1,6 +1,6 @@
 <template>
-<div class="container" >
-  <div class="card" v-for="(item, index) in totalInfo"  :key="index">
+<div class="container" v-infinite-scroll="load" style="overflow:auto;" infinite-scroll-distance="10" infinite-scroll-immediate="false">
+  <div class="card" v-for="(item, index) in computed_info"  :key="index">
 
     <div class="main" @click="toDetail(item.item_info.article_id)">
       <div class="header" >
@@ -53,6 +53,8 @@ export default {
     return {
       // 全部数据
       totalInfo: {},
+      // 无限列表初始值
+      i: 3,
       // 每个标签页的信息，包括作者、日期以及标签
       metaInfo: [
         {
@@ -76,18 +78,15 @@ export default {
           comments: '23',
           url: ''
         }
-      ]
+      ],
+      computed_info: {}
     }
   },
-  computed: {
-    computeInfo: function () {
-      console.log('computed test')
-      // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-      // this.test1 = this.totalInfo.slice(0, 2)
-      // console.log(this.test1)
-      return this.totalInfo
-    }
-  },
+  // computed: {
+  //   computeInfo: function () {
+  //     return this.totalInfo.slice(0, 3)
+  //   }
+  // },
   methods: {
     toDetail (id) {
       console.log(id)
@@ -104,19 +103,24 @@ export default {
       this.$http.get('/test.json').then(res => {
         this.totalInfo = res.data.data
         // console.log(this.totalInfo.slice(0, 3))
+        this.computed_info = this.totalInfo.slice(0, this.i)
+        // console.log(this.computed_info)
         // 作者名字
-        console.log(this.totalInfo[0].item_info.author_user_info.user_name)
+        // console.log(this.totalInfo[0].item_info.author_user_info.user_name)
         // tag名称
-        console.log(this.totalInfo[0].item_info.tags[0].tag_name)
+        // console.log(this.totalInfo[0].item_info.tags[0].tag_name)
         // 文章简评
-        console.log(this.totalInfo[0].item_info.article_info.brief_content)
+        // console.log(this.totalInfo[0].item_info.article_info.brief_content)
         // 文章封面
-        console.log(this.totalInfo[0].item_info.article_info.cover_image)
-        // console.log(this.totalInfo)
-        // for (let i = 0; i < this.totalInfo.length; i++) {
-        //   console.log(this.totalInfo[i].item_info.author_user_info)
-        // }
+        // console.log(this.totalInfo[0].item_info.article_info.cover_image)
       })
+    },
+    load () {
+      if (this.i < 23) {
+        this.i += 5
+        this.getDate()
+        // console.log(this.i)
+      }
     }
   },
   created () {
@@ -135,6 +139,14 @@ export default {
   position: relative;
   cursor: pointer;
 }
+.container::-webkit-scrollbar{
+  display: none;
+}
+
+.infinite-infinite-list{
+  height: 100%;
+}
+
 .meta-info{
   list-style-type: none;
   height: 100%;
@@ -151,6 +163,7 @@ export default {
 .meta-info a:visited{
   color: #909090;
 }
+
 /* 除了第二个表示天数的元素其他的都添加hover效果 */
 .meta-info a:not(:nth-child(2)):hover{
   color:#1171ee;
