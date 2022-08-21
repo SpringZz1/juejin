@@ -11,6 +11,9 @@ const routes = [
     component: () =>
       import('../views/home/index.vue'),
     redirect: '/recommand',
+    meta: {
+      title: '掘金'
+    },
     // 增加子目录: 分别是最新和热榜
     children: [{
       path: '/recommand',

@@ -10,6 +10,13 @@ Vue.prototype.$http = axios
 // Vue.prototype.$axios = axios
 Vue.config.productionTip = false
 
+// router.beforeEach((to, from, next) => {
+//   // 路由发生变化修改页面title
+//   if (to.meta.title) {
+//     document.title = to.meta.title
+//   }
+// })
+
 new Vue({
   router,
   render: h => h(App)

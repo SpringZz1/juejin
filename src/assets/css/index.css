@@ -1,0 +1,106 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+  body{
+    background-color: #e4e6eb;
+  }
+
+  .el-container{
+    margin: 0 auto; /* 水平居中 */
+    text-align: center;
+    width: 60%;
+  }
+
+  .el-header{
+    background-color: #B3C0D1;
+    color: #333;
+    text-align: center;
+  }
+
+  .el-main {
+    margin-top: 10px; /* 距离上方有段距离 */
+    background-color: #E9EEF3;
+    color: #333;
+    text-align: center;
+  }
+
+  nav-menu{
+    text-decoration: none;
+    list-style: none;
+    /* padding-left: -50px; */
+  }
+
+  .nav-item a{
+    text-decoration: none;
+    cursor: pointer;
+    /* color: #909090; */
+    font-size: 14px;
+  }
+
+  .nav-item{
+    display: inline;
+    text-decoration: none;
+    cursor: pointer;
+    float: left;
+  }
+
+  .text {
+    font-size: 14px;
+  }
+
+  .item {
+    margin-bottom: 18px;
+  }
+
+  .clearfix:before,
+  .clearfix:after {
+    display: table;
+    content: "";
+  }
+  .clearfix:after {
+    clear: both
+  }
+
+  .box-card {
+    width: 80%;
+  }
+
+  .nav-item a:visited{
+    color: #909090;
+  }
+
+  .nav-item a:hover{
+    color:#1171ee;
+  }
+
+  .nav-item a:active{
+    color:#1171ee;
+  }
+
+  .eac{
+    /* 这里使用!important来提高优先级 */
+    color:#1171ee !important;
+  }
+
+  .nav-item a:last-child::after{
+    display: inline-block;
+    height: 13px;
+    margin: 0px 10px;
+    border-right: 0.5px solid #66666648;
+    content: '';
+  }
+
+  .el-input__inner{
+    border:1px solid #dcdfe6;
+    width: 90px;
+  }
+
+  .el-input--mini .el-input__inner{
+    height: 20px;
+    /* line-height: 20px; */
+  }
+
+  .el-input--mini .el-input__icon{
+    line-height: 2px;
+  }
