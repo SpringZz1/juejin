@@ -6,7 +6,7 @@
     background-color: #e4e6eb;
   }
 
-  .el-container{
+  .el-container {
     margin: 0 auto; /* 水平居中 */
     text-align: center;
     width: 70%;
@@ -503,7 +503,7 @@
   }
   li {
     display: list-item;
-    text-align: -webkit-match-parent;
+    /* text-align: -webkit-match-parent; */
     margin-right: 10px;
   }
   .index-aside-footer .more-list .item .police {
