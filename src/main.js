@@ -3,6 +3,7 @@ import './plugins/axios'
 import App from './App.vue'
 import router from './router'
 import './plugins/element.js'
+import 'github-markdown-css'
 // eslint-disable-next-line no-unused-vars
 import axios from 'axios'
 Vue.prototype.$http = axios
