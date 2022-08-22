@@ -1,4 +1,5 @@
 <template>
+<div class="home-page">
     <el-container>
         <el-header >这是头部</el-header>
         <!-- 主要内容区 -->
@@ -289,6 +290,7 @@
     </div>
         </el-main>
     </el-container>
+  </div>
 </template>
 
 <script>
@@ -328,6 +330,6 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 @import '../../assets/css/index.css';
 </style>
