@@ -6,20 +6,21 @@
     background-color: #e4e6eb;
   }
 
-  .el-container {
-    margin: 0 auto; /* 水平居中 */
-    text-align: center;
-    width: 70%;
-  }
+  .el-container{
+     margin: 0 auto;  /* 水平居中 */ 
+   text-align: center;
+     width: 70%; 
+  } 
 
-  .el-header{
-    background-color: #B3C0D1;
+  /* .el-header{
+    width: 1470px;
     color: #333;
-    text-align: center;
-  }
+    height: 105px;
+    /* text-align: center; */
+ /* } */
 
   .el-main {
-    margin-top: 10px; /* 距离上方有段距离 */
+    /* margin-top: 10px; 距离上方有段距离 */
     background-color: #e4e6eb;
     color: #333;
     text-align: center;
@@ -355,7 +356,7 @@
     
     .username {
       display: flex;
-      flex-direction: row;
+      -ms-flex-direction: row;
       padding: 12px 15.6px;
       align-items: center;
       /* width: 240px;  */
@@ -366,7 +367,7 @@
       /* border-bottom: 1px solid rgb(228, 230, 235); */
     }
     .username #pic1 {
-      flex: 0 0 auto;
+      -ms-flex: 0 0 auto;
       width: 48px;
       height: 48px;
       border-radius: 50%;
@@ -503,7 +504,7 @@
   }
   li {
     display: list-item;
-    /* text-align: -webkit-match-parent; */
+    text-align: -webkit-match-parent;
     margin-right: 10px;
   }
   .index-aside-footer .more-list .item .police {
@@ -561,5 +562,98 @@
     width: 120px;
     height: 120px;
   }
+
+.topBac {
+    background-color: rgb(255, 255, 255);
+}
+
+.fixed {
+    position: fixed;
+    top: 20px;
+    right: 260px;
+}
+
+.topBox {
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+}
+
+.topBox div {
+    font-weight: 200;
+    margin-left: 25px;
+    font-size: 15px;
+}
+
+.picture {
+    margin-left: 90px;
+    width: 105px !important;
+    height: 20px !important;
+}
+
+.picture2 {
+  width: 33px !important;
+  height: 34px !important;
+}
+
+.search {
+    width: 348px;
+    border-radius: 5px;
+    height: 34px;
+    margin-left: 180px;
+    border: 1px solid rgb(192, 196, 203);
+    font-size: small;
+    padding-left: 12px;
+    font-weight: 200;
+}
+
+.span1 {
+    width: 95px;
+    height: 35px;
+    background-color: rgb(30, 128, 255);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin-left: 25px;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.divide1 {
+    height: 35px;
+    width: 1px;
+    background-color: rgb(53, 141, 255);
+}
+
+.span2 {
+    width: 20px;
+    height: 35px;
+    background-color: rgb(30, 128, 255);
+    border-bottom-right-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+.divide {
+    height: 1px;
+    background-color: rgb(241, 241, 241);
+}
+
+.middleBox {
+    height: 44px;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+}
+
+.middleBox div {
+    font-weight: 100;
+    margin-left: 25px;
+    font-size: 14px;
+}
   
   
