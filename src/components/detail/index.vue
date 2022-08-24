@@ -3,7 +3,9 @@
     <el-header>Header</el-header>
     <el-main>
       <div class="left-part">我是左边</div>
-      <div class="center-part github-markdown-css" v-html="compiledhtml"></div>
+      <div ref="markdownContent">
+        <div class="center-part github-markdown-css" v-html="compiledhtml"></div>
+      </div>
       <div class="right-part">我是右边</div>
     </el-main>
   </el-container>
@@ -21,7 +23,11 @@ export default {
   data () {
     return {
       id: 0,
-      md: ''
+      md: '',
+      // 用来记录生成菜单
+      catalog: {},
+      // 接受强转之后的数据
+      array: []
     }
   },
   computed: {
@@ -56,10 +62,44 @@ export default {
       this.$http.get('./markdown/article1.md').then(res => {
         this.md = res.data
       })
+    },
+    generateCatalog () {
+      // 生成目录
+      // 保证渲染成功
+      this.$nextTick(() => {
+        const articleContent = this.$refs.markdownContent
+        console.log(articleContent.children[0].childNodes)
+        this.array = articleContent.children[0].childNodes
+        // eslint-disable-next-line no-unused-vars
+        const titleTag = ['H1', 'H2', 'H3']
+        const titles = []
+        articleContent.children[0].childNodes.forEach((e, index) => {
+          console.log(e)
+        })
+
+        // articleContent.children[0].childNodes.forEach((e, index) => {
+        //   if (titleTag.includes(e.nodeName)) {
+        //     const id = 'header-' + index
+        //     e.setAttribute('id', id)
+        //     titles.push({
+        //       id: id,
+        //       title: e.innerHTML,
+        //       level: Number(e.nodeName.substring(1, 2)),
+        //       nodeName: e.nodeName
+        //     })
+        //   }
+        // })
+        this.catalog = titles
+      })
     }
   },
   created () {
     this.getParamas()
+  },
+  updated () {
+    this.$nextTick(() => {
+      this.generateCatalog()
+    })
   }
 }
 </script>
