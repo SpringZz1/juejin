@@ -28,7 +28,8 @@ body{
 }
 
 .left-part {
-  width: 20%;
+  width: 15%;
+  height: 100%;
   float: left;
 }
 
@@ -55,8 +56,30 @@ body{
 }
 .right-part {
   width: 20%;
+  height: 100%;
+  margin-left: 20px;
   float: left;
+  text-align: left;
 }
+
+.right-part .catalogue {
+  background-color: #fff;
+  line-height: 30px;
+  padding: 15px;
+  height: 40%;
+  position: sticky;
+  top: 0;
+  box-shadow: 3px 3px 10px #888888;
+}
+
+.seq {
+  border-bottom: 1px solid #66666648;
+  margin: 10px 0;
+}
+
+/* .right-part p{
+
+} */
 
 .markdown-body {
   box-sizing: border-box;
