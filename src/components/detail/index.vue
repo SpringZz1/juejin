@@ -4,15 +4,16 @@
     <el-main>
       <div class="left-part">我是左边</div>
       <div ref="markdownContent">
-        <div class="center-part github-markdown-css" v-html="compiledhtml"></div>
+        <div class="center-part" v-html="compiledhtml"></div>
       </div>
       <div class="right-part">
         <div class="catalogue">
-        <h2>目录</h2>
+        <h2 style="display:inline-block">目录</h2>
+        <span style="float:right">{{this.progress}}</span>
         <div class="seq"></div>
         <ul v-for="(item, index) in catalog" :key="index">
-          <li :key="index" :style="{paddingLeft: item.level * 22-44 + 'px'}">
-            <a :href="'#' + item.id">
+          <li :key="item.id" :style="{paddingLeft: item.level * 22-44 + 'px'}">
+            <a :href="'#' + item.id" :class="currentTitle.id === item.id ? 'active' : 'test'">
               {{item.title}}
             </a>
           </li>
@@ -38,8 +39,10 @@ export default {
       md: '',
       // 用来记录生成菜单
       catalog: {},
-      // 接受强转之后的数据
-      array: []
+      // 记录当前文章对象
+      currentTitle: {},
+      // 记录进度条
+      progress: 0
     }
   },
   computed: {
@@ -47,10 +50,14 @@ export default {
       // 设置marked.js渲染参数和代码高亮
       marked.setOptions({
         renderer: new marked.Renderer(),
-        highlight: function (code, lang) {
+        // highlight: function (code, lang) {
+        //   const hljs = require('highlight.js')
+        //   const language = hljs.getLanguage(lang) ? lang : 'plaintext'
+        //   return hljs.highlight(code, { language }).value
+        // },
+        highlight: function (code) {
           const hljs = require('highlight.js')
-          const language = hljs.getLanguage(lang) ? lang : 'plaintext'
-          return hljs.highlight(code, { language }).value
+          return hljs.highlightAuto(code).value
         },
         langPrefix: 'hljs language-',
         break: false,
@@ -65,7 +72,7 @@ export default {
         smartypants: false,
         xhtml: false
       })
-      console.log('1111')
+      // console.log('1111')
       return marked.parse(this.md)
     },
     computedMD () {
@@ -74,8 +81,10 @@ export default {
   },
   methods: {
     getParamas () {
+      // 随机请求markdown文件
+      const number = Math.ceil(Math.random() * 20)
       this.id = this.$route.params.id
-      this.$http.get('./markdown/article1.md').then(res => {
+      this.$http.get(`./markdown/article${number}.md`).then(res => {
         this.md = res.data
       })
     },
@@ -96,25 +105,29 @@ export default {
                 id: id,
                 title: e.innerHTML,
                 level: Number(e.nodeName.substring(1, 2)),
-                nodeName: e.nodeName
+                nodeName: e.nodeName,
+                scrollTop: e.offsetTop
               })
             }
           })
         }, 100)
         this.catalog = titles
-        console.log(this.catalog)
+        // console.log(this.catalog)
+        this.catalogLength = this.catalog.length
       })
     },
     handleScroll () {
-      // 获取dom滚动距离
-      const scrollTop = this.computedMD.scrollTop
-      console.log(scrollTop)
-      // 获取可视区高度
-      const offsetHeight = this.computedMD.offsetHeight
-      console.log(offsetHeight)
-      // 获得滚动条总高度
-      const scrollHeight = this.computedMD.scrollHeight
-      console.log(scrollHeight)
+      this.progress = parseInt((window.scrollY / document.documentElement.scrollHeight) * 100) + '%'
+      // console.log(this.progress)
+      for (let i = this.catalog.length - 1; i >= 0; i--) {
+        const cata = this.catalog[i]
+        if (cata.scrollTop <= window.scrollY) {
+          if (this.currentTitle.id === cata.id) return
+          Object.assign(this.currentTitle, cata)
+          // console.log(this.currentTitle)
+          return
+        }
+      }
     }
   },
   created () {
@@ -128,7 +141,7 @@ export default {
       this.generateCatalog()
     })
     this.$nextTick(() => {
-      this.computedMD.addEventListener('scroll', this.handleScroll)
+      window.addEventListener('scroll', this.handleScroll)
     })
   }
 }
